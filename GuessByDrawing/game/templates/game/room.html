@@ -1,0 +1,119 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'game/css/RoomStyle.css' %}" type="text/css">
+    <title>{{title}}</title>
+</head>
+<body>
+    <div class="win-result">
+        <div class="win-result-container">
+            <div class="win-result-title">Word guessed ??? The word was wrong</div>
+            <div class="win-result-user">?User? guessed the word</div>
+            <div class="win-result-word">The word was ?banana?</div>
+        </div>
+    </div>
+
+    <div class="make-word">
+        <div class="make-word-container">
+            Make a word
+            <input type="text" class="make-word-input" placeholder="word" maxlength="20">
+            <div class="make-word-save" onclick="saveWord()">Submit</div>
+        </div>
+    </div>
+
+    <div class="wait-container">
+        <img class="wait-container-img" src="{% static 'game/svg/wait.svg' %}">
+    </div>
+
+    <div class="game-container-place-header-time">180s.</div>
+    <div class="room-container">
+        <div>
+            <div class="room-container-rooms">
+                <div class="room-container-rooms-couter">
+                    <div class="room-container-rooms-couter-first">0</div>
+                    <div class="room-container-rooms-couter-second">players</div>
+                </div>
+                <!-- <div class="room-container-rooms-user">
+                    <img class='room-container-rooms-user-img' src="{% static 'game/image/avatars/'|add:avatar %}">
+                    <div class='room-container-rooms-user-container'>
+                        <div>{{username}}</div>
+                        <div id="room-rooms-me" class='room-container-rooms-user-status-false'>Not ready</div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <div class="room-container-userstart">
+            <div class="room-container-header">Room</div>
+            <div id='{{uuid}}' class="room-container-username">{{username}}</div>
+            <div class="room-container-start" onclick="readyButton()">Ready</div>
+            <div class="room-container-copy" onclick="copyLink()">Copy link</div>
+        </div>
+    </div>
+
+    <div class="game-container">
+        <div class="game-container-colors">
+            <div class="game-container-colors-header">Colors</div>
+            <div class="game-container-colors-container">
+                <div class="game-container-colors-container-close"><img class="colors-container-close-img" src="{% static 'game/svg/locker.svg' %}"></div>
+                <div class="game-container-colors-container-color">
+                    <div class="game-container-colors-color-container" style="background-color: #fff;" onclick="changeColor('#ffffff')"></div>
+                    <div class="game-container-colors-color-container" style="background-color: #000;" onclick="changeColor('#000000')"></div>
+                    <div class="game-container-colors-color-container" style="background-color: #A9A9A9;" onclick="changeColor('#A9A9A9')"></div>
+                    <div class="game-container-colors-color-container" style="background-color: #696969;" onclick="changeColor('#696969')"></div>
+                    <div class="game-container-colors-color-container" style="background-color: #FF0000;" onclick="changeColor('#FF0000')"></div>
+                    <div class="game-container-colors-color-container" style="background-color: #FF6347;" onclick="changeColor('#FF6347')"></div>
+                    <div class="game-container-colors-color-container" style="background-color: #FFFF00;" onclick="changeColor('#FFFF00')"></div>
+                    <div class="game-container-colors-color-container" style="background-color: #00b800;" onclick="changeColor('#00b800')"></div>
+                    <div class="game-container-colors-color-container" style="background-color: #00BFFF;" onclick="changeColor('#00BFFF')"></div>
+                    <div class="game-container-colors-color-container" style="background-color: #0000CD;" onclick="changeColor('#0000CD')"></div>
+                    <div class="game-container-colors-color-container" style="background-color: #8B008B;" onclick="changeColor('#8B008B')"></div>
+                    <div class="game-container-colors-color-container" style="background-color: #FF1493;" onclick="changeColor('#FF1493')"></div>
+                    <div class="game-container-colors-color-container" style="background-color: #D2691E;" onclick="changeColor('#D2691E')"></div>
+                    <div class="game-container-colors-color-container" style="background-color: #9370DB;" onclick="changeColor('#9370DB')"></div>
+                    <div class="game-container-colors-color-container" style="background-color: #FFA500;" onclick="changeColor('#FFA500')"></div>
+                    <!-- <div class="game-container-colors-color-big-container"></div> -->
+                    <input class="game-container-colors-color-big-container" type="color" value="#000000" onchange="changeColor(value)">
+                </div>
+                <div class="game-container-colors-conteiner-tools">
+                    <div class="game-container-colors-conteiner-tools-buttons">
+                        <div class="game-container-colors-color-container" style="background-color: #fff; margin-left: 4px;" onclick="changeColor('#ffffff')">
+                            <img class="game-container-colors-color-container-eraser-img" src="{% static 'game/svg/eraser.svg' %}">
+                        </div>
+                    </div>
+
+                    <div class="game-container-tools-text">Brush size</div>
+                    <input type="range" value="5" min="2" max="15" step="1" class="game-container-color-range" oninput="changeBrushSize()">
+                </div>
+            </div>
+        </div>
+        <div class="game-container-place">
+            <div class="game-container-place-header">?user? draws</div>
+            <canvas id="game-canvas"></canvas>
+        </div>
+        <div class="game-container-chat">
+            <div class="game-container-chat-header">Chat</div>
+            <div class="game-container-chat-chat">
+            </div>
+            <div class="game-container-chat-input-place">
+                <input type="text" class="game-container-chat-input" placeholder="Text" maxlength="25">
+                <button class="game-container-chat-input-button" onclick="sendMessageChat()">
+                    <img class="game-container-chat-input-send-img" src="{% static 'game/svg/send.svg' %}">
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="end-container">
+        Game over!
+        <div class="end-container-buttons">
+            <div class="end-container-home" onclick="goToHome()">To main</div>
+            <div class="end-container-room" onclick="goToRoom()">Play again</div>
+        </div>
+    </div>
+    {{ room_id|json_script:"room-id" }}
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.0/dist/confetti.browser.min.js"></script>
+<script src="{% static 'game/js/script.js' %}"></script>

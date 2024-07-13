@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'game/css/MainStyle.css' %}" type="text/css">
+    <title>{{title}}</title>
+</head>
+<body>
+    <div class="main-container">
+        <div class="main-container-header">Guess By Drawing</div>
+        <div class="main-container-username">
+            <div class="main-container-username-text">Create an alias and select an avatar</div>
+            <div class="main-container-username-container">
+                <img src="{% static 'game/image/avatars/'|add:avatar %}" class="main-container-avatar-img" onclick="changeAvatar()">
+                <input class='main-container-username-input' type="text" placeholder="Username" maxlength="10" value="{{username}}" oninput="showSaveButton()">
+            </div>
+            <div class="main-container-username-save" onclick="saveData()">Save</div>
+        </div>
+        {% if room_id is None %}
+            <div class="main-container-start" onclick="createRoom()">Create Room</div>
+        {% else %}
+            <div class="main-container-connect" onclick="createRoom()">Connect</div>
+        {% endif %}
+    </div>
+</body>
+</html>
+<script>
+    const avatarURLs = ["{% static 'game/image/avatars/avatar1.jpg' %}", "{% static 'game/image/avatars/avatar2.jpg' %}", "{% static 'game/image/avatars/avatar3.jpg' %}",
+                             "{% static 'game/image/avatars/avatar4.jpg' %}", "{% static 'game/image/avatars/avatar5.jpg' %}","{% static 'game/image/avatars/avatar6.jpg' %}",
+                             "{% static 'game/image/avatars/avatar7.jpg' %}", "{% static 'game/image/avatars/avatar8.jpg' %}", "{% static 'game/image/avatars/avatar9.jpg' %}",
+                             "{% static 'game/image/avatars/avatar10.jpg' %}", "{% static 'game/image/avatars/avatar11.jpg' %}", "{% static 'game/image/avatars/avatar12.jpg' %}"]
+</script>
+{{ room_id|json_script:"room-id" }}
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="{% static 'game/js/index_script.js' %}"></script>
