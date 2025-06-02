@@ -7,21 +7,58 @@
     <title>{{title}}</title>
 </head>
 <body>
+
+
+    <div class="info_place" onclick="close_info()" style="display: none;">
+    <div class="info_place_text" onclick="event.stopPropagation()">
+        Об программе:
+        <br>
+        Guess By Drawing — это игра, в которой каждому участнику предоставляется возможность загадать слово и попытаться нарисовать его так, чтобы другие участники смогли угадать, что именно было загадано, причем каждый участник делает это по очереди.
+        <br>
+        <br>
+        Помощь:
+        <br>
+        Краткое руководство:
+        <br>
+        • Для начала в главном меню необходимо придумать свой псевдоним, выбрать себе аватарку и нажать кнопку "Сохранить".
+        <br>
+        • Далее можно создать комнату, либо подключиться к уже существующей с помощью ссылки с которой могут поделиться с вами.
+        <br>
+        • После того как все участники подключились необходимо нажать кнопку "Ready" после чего игра сама автоматически запустится.
+        <br>
+        • После запуска одному из участников предложат загадать слово и ему надо будет рисунком объяснить какое слово он загадал.
+        <br>
+        • Остальные участники в этот момент должны попытаться отгадать какое слово было загадано.
+        <br>
+        • Если кто-то успеет угадать слово за 180 секунд то на экран будет выведен победитель и загаданное слово. Если же слово не угадали, то будет выведено загаданное слово.
+        <br>
+        • После этого перейдет очередь рисовать к следующему участнику и так пока каждый участник не побывает в роли того кто рисует.
+
+        <br>
+        <br>
+        Разработчик: Шамсулин Радмир Ринатович
+        <br>
+        Студент группы: 24Пинж(б)-2
+    </div>
+</div>
+
+
     <div class="main-container">
         <div class="main-container-header">Guess By Drawing</div>
         <div class="main-container-username">
-            <div class="main-container-username-text">Create an alias and select an avatar</div>
+            <div class="main-container-username-text">Придумайте псевдоним и выбрать аватар</div>
             <div class="main-container-username-container">
                 <img src="{% static 'game/image/avatars/'|add:avatar %}" class="main-container-avatar-img" onclick="changeAvatar()">
                 <input class='main-container-username-input' type="text" placeholder="Username" maxlength="10" value="{{username}}" oninput="showSaveButton()">
             </div>
-            <div class="main-container-username-save" onclick="saveData()">Save</div>
+            <div class="main-container-username-save" onclick="saveData()">Сохранить</div>
         </div>
         {% if room_id is None %}
-            <div class="main-container-start" onclick="createRoom()">Create Room</div>
+            <div class="main-container-start" onclick="createRoom()">Создать</div>
         {% else %}
-            <div class="main-container-connect" onclick="createRoom()">Connect</div>
+            <div class="main-container-connect" onclick="createRoom()">Подключиться</div>
         {% endif %}
+        <div class="main-container-start" onclick="show_info()" style="background-color: #956cff;">О программе</div>
     </div>
 </body>
 </html>

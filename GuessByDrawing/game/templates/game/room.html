@@ -54,7 +54,7 @@
 
     <div class="game-container">
         <div class="game-container-colors">
-            <div class="game-container-colors-header">Colors</div>
+            <div class="game-container-colors-header">Цвета</div>
             <div class="game-container-colors-container">
                 <div class="game-container-colors-container-close"><img class="colors-container-close-img" src="{% static 'game/svg/locker.svg' %}"></div>
                 <div class="game-container-colors-container-color">
@@ -83,7 +83,7 @@
                         </div>
                     </div>
 
-                    <div class="game-container-tools-text">Brush size</div>
+                    <div class="game-container-tools-text">Размер кисти</div>
                     <input type="range" value="5" min="2" max="15" step="1" class="game-container-color-range" oninput="changeBrushSize()">
                 </div>
             </div>
@@ -93,7 +93,7 @@
             <canvas id="game-canvas"></canvas>
         </div>
         <div class="game-container-chat">
-            <div class="game-container-chat-header">Chat</div>
+            <div class="game-container-chat-header">Чат</div>
             <div class="game-container-chat-chat">
             </div>
             <div class="game-container-chat-input-place">
@@ -108,8 +108,8 @@
     <div class="end-container">
         Game over!
         <div class="end-container-buttons">
-            <div class="end-container-home" onclick="goToHome()">To main</div>
-            <div class="end-container-room" onclick="goToRoom()">Play again</div>
+            <div class="end-container-home" onclick="goToHome()">Главное меню</div>
+            <div class="end-container-room" onclick="goToRoom()">Игра еще</div>
         </div>
     </div>
     {{ room_id|json_script:"room-id" }}

@@ -42,3 +42,17 @@ function showSaveButton() {
   saveButton = document.querySelector('.main-container-username-save');
   saveButton.style.display = 'block';
 }
+
+function show_info() {
+    infoPlace = document.querySelector('.info_place');
+    console.log(infoPlace)
+    infoPlace.style.display = "flex";
+    infoPlace.style.opacity = 1;
+}
+
+function close_info() {
+    infoPlace = document.querySelector('.info_place');
+    console.log(infoPlace)
+    infoPlace.style.display = "none";
+    infoPlace.style.opacity = 0;
+}

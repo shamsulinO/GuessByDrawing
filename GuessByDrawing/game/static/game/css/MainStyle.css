@@ -96,6 +96,7 @@ a {
     color: #ffffff;
     flex-direction: column;
     text-shadow: 1px 1px 2px#2424247e;
+    text-align: center;
 }
 
 .main-container-username-container {
@@ -150,4 +151,32 @@ a {
 
 .main-container-username-save:active {
     background-color: #5dd159;
+}
+
+.info_place_text {
+    background: #dddddd;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #9f9f9f;
+    font-size: 15px;
+    font-weight: 500;
+    width: 50%;
+    color: #000000bf;
+}
+
+.info_place {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 15;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: color 0.2s ease-in-out;
 }

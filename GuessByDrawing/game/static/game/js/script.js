@@ -387,9 +387,9 @@ function winGame() {
   wordUser = document.querySelector('.win-result-user');
   wordWord = document.querySelector('.win-result-word');
 
-  wordTitle.innerHTML = 'Word guessed!';
-  wordUser.innerHTML = guessWord + " guessed the word!";
-  wordWord.innerHTML = 'The word was - ' + word;
+  wordTitle.innerHTML = 'Слово угадано!';
+  wordUser.innerHTML = guessWord + " угадал слово!";
+  wordWord.innerHTML = 'Слово было - ' + word;
 
   gameTime = document.querySelector('.game-container-place-header-time');
   gameTime.innerHTML = '180s.';
